@@ -1,0 +1,24 @@
+<div>
+  <form [formGroup]="formLogin" (ngSubmit)="login()">
+
+    <div>
+      <label for="username" class="col-sm-2 col-form-label">Tên đăng nhập:</label>
+      <input type="text" id="username" name="username" class="form-control" formControlName="username">
+    </div>
+
+    <div>
+      <label for="password" class="col-sm-2 col-form-label">Tên đăng nhập:</label>
+      <input type="password" id="password" name="password" class="form-control" formControlName="password">
+    </div>
+
+    <button type="submit">Đăng nhập</button>
+
+  </form>
+
+  <br>
+  <button (click)="loginWithFacebook()">FACEBOOK</button>
+  <br>
+  <button (click)="loginWithGoogle()">GOOGLE</button>
+  <br>
+  <button (click)="signOut()">Logout</button>
+</div>
