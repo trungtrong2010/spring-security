@@ -9,10 +9,7 @@ import com.google.common.io.BaseEncoding;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.*;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.ExpiredAuthorizationException;
@@ -116,7 +113,10 @@ public class HomeController {
             httpStatus = HttpStatus.BAD_REQUEST;
         } catch (BadCredentialsException badCredentialsException) {
             // Catch username & password exists in database
-            status = "Wrong password or username";
+            status = "Wrong password";
+            httpStatus = HttpStatus.BAD_REQUEST;
+        } catch (InternalAuthenticationServiceException internalAuthenticationServiceException) {
+            status = "Username not exists";
             httpStatus = HttpStatus.BAD_REQUEST;
         } catch (Exception exception) {
             status = "Error server";
